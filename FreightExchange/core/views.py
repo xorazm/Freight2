@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .forms import AddFreight
 
 from .models import GeoLocations,Freights
 
@@ -24,3 +25,26 @@ def freight(request):
     geoloc = GeoLocations.objects.all()
 
     return render(request, "index.html", {'geoloc': geoloc ,'freights':freights})
+
+
+def addfreight(request):
+    message = ""
+    fromloc=""
+    toloc=""
+    comment=""
+    contact=""
+    weight=""
+    if request.method == "POST":
+
+        form = AddFreight(request.POST)
+        if form.is_valid():
+            fromloc=request.POST.get("FromLoc")
+            toloc=request.POST.get("ToLoc")
+            weight=request.POST.get("Weight")
+            comment=request.POST.get("Comment")
+            contact=request.POST.get("Contact")
+            message="Данные благополучно добавились"
+        else:
+            message="Попробуйте заново"
+    addfr=AddFreight()
+    return render(request, "addfreight.html",{"addfr":addfr,"message":message,"fromloc":fromloc,"toloc":toloc,"weight":weight,"comment":comment,"contact":contact})
