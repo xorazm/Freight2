@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+    </script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet"
+        type="text/css" />
+
+    <meta charset="utf-8" />
+    <title>{% block title %}Грузоперевозки | Узбекистан {% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="about">О нас</a>
+      <a class="nav-item nav-link" href="addfreight">Добавить груз</a>
+      <a class="nav-item nav-link" href="contact">Контакты</a>
+
+    </div>
+  </div>
+    </nav>
+    <div>{% block bar%}{% endblock bar %}</div>
+
+
+
+
+
+    <div>{% block content%}{% endblock content %}</div>
+    <div>MyCorp. {% now 'Y' %}. All rights reserved.</div>
+</body>
+</div>
+</html>

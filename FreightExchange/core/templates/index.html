@@ -1,0 +1,30 @@
+{% extends "master.html" %}
+{% block bar %}
+{% include "SearchForm.html" %}
+{% endblock %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th> Из </th>
+        <th> В </th>
+        <th> Вес </th>
+        <th> Коммент </th>
+        <th> Контакты </th>
+    </tr>
+    </thead>
+<tbody>
+    {%for freight in freights %}
+    <tr>
+        <td> {{freight.FromLocationId.GeoLocationsName}}</td>
+        <td> {{freight.ToLocationId.GeoLocationsName}}</td>
+        <td> {{freight.Weight}}</td>
+        <td> {{freight.Comment}}</td>
+        <td> {{freight.ContactPerson.ContactPersonName}}
+            {{freight.ContactPerson.Phone}}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block content %}
+Добавьте груз
+<form method="POST">
+        {% csrf_token %}
+
+<table>
+        {{ addfr }}
+</table>
+    {{qw}}
+    fromloc: {{fromloc}}
+    toloc: {{toloc}}
+    weight: {{weight}}
+    comment: {{comment}}
+    contract: {{contact}}
+     <input type="submit" value="Отправить" >
+</form>
+{% endblock content %}

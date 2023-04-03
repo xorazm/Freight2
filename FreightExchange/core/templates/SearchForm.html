@@ -1,0 +1,39 @@
+ <form method="get" action="">
+        <div class="container">
+        <div class="row">
+  <div class="col">
+    <input type="text" name="fromTxt" id="fromTxt"  class="form-control" placeholder="Откуда" aria-label="Откуда">
+      <script>
+        $(function () {
+            var availableTags = [
+                {% for geo1 in geoloc %}
+                    "{{geo1.GeoLocationName}}",
+                {% endfor %}
+                ];
+            $("#fromTxt").autocomplete({
+                source: availableTags
+                });
+        });
+    </script>
+
+
+    <input type="text" name="toTxt" id="toTxt" class="form-control" placeholder="Куда" aria-label="Куда">
+      <script>
+        $(function () {
+            var availableTags = [
+                {%for geo in geoloc %}
+                    "{{geo.GeoLocationName}}",
+                {% endfor %}
+                ];
+            $("#toTxt").autocomplete({
+                source: availableTags
+                });
+        });
+    </script>
+
+            <input type="submit" value="Поиск груза">
+                 </div>
+</div>
+
+        </div>
+    </form>
