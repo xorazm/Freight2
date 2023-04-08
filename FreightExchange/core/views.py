@@ -34,6 +34,8 @@ def addfreight(request):
     comment=""
     contact=""
     weight=""
+    fromid=""
+    fromLocation=""
     if request.method == "POST":
 
         form = AddFreight(request.POST)
@@ -44,7 +46,9 @@ def addfreight(request):
             comment=request.POST.get("Comment")
             contact=request.POST.get("Contact")
             message="Данные благополучно добавились"
+            fromLocation=GeoLocations.objects.get(GeoLocationName=fromloc)
+
         else:
             message="Попробуйте заново"
     addfr=AddFreight()
-    return render(request, "addfreight.html",{"addfr":addfr,"message":message,"fromloc":fromloc,"toloc":toloc,"weight":weight,"comment":comment,"contact":contact})
+    return render(request, "addfreight.html",{"addfr":addfr,"message":message,"fromloc":fromloc,"toloc":toloc,"weight":weight,"comment":comment,"contact":contact, 'fromid':fromLocation})

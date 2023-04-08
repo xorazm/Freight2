@@ -6,6 +6,7 @@
 <table class="table table-striped">
     <thead>
     <tr>
+        <th> Дата </th>
         <th> Из </th>
         <th> В </th>
         <th> Вес </th>
@@ -16,12 +17,13 @@
 <tbody>
     {%for freight in freights %}
     <tr>
-        <td> {{freight.FromLocationId.GeoLocationsName}}</td>
-        <td> {{freight.ToLocationId.GeoLocationsName}}</td>
+        <td> {{freight.SubmitedDate}}</td>
+        <td> {{freight.FromLoc.GeoLocationName}}</td>
+        <td> {{freight.ToLoc.GeoLocationName}}</td>
         <td> {{freight.Weight}}</td>
         <td> {{freight.Comment}}</td>
-        <td> {{freight.ContactPerson.ContactPersonName}}
-            {{freight.ContactPerson.Phone}}
+        <td> {{freight.Contact}} <br>
+            {{freight.TLLinkUser}}
         </td>
     </tr>
     {% endfor %}

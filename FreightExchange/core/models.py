@@ -37,6 +37,7 @@ class Freights(models.Model):
     User=models.ForeignKey(User, null=True ,on_delete=models.CASCADE, verbose_name='Пользователь')
     TLLinkMessage=models.CharField(max_length=100,null=True,verbose_name='Ссылка на пост')
     TLLinkUser = models.CharField(max_length=100, null=True, verbose_name='Ссылка на пользователя')
+    Active=models.BooleanField(default=True,verbose_name='Есть на сайте')
 
     class Meta:
         verbose_name = 'Грузоперевозка'

@@ -19,6 +19,8 @@ class FreightsModelForm( forms.ModelForm ):
 
 class FreightsAdmin(admin.ModelAdmin):
     form = FreightsModelForm
+    list_display = ('id', 'FromLoc', 'ToLoc', 'Weight', 'Comment', 'SubmitedDate','Contact', 'User','TLLinkMessage','TLLinkUser','Active')
+    list_editable = ('Active',)
 
 
 admin.site.register(GeoLocations,GeoLocationsAdmin)
