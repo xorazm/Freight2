@@ -15,7 +15,24 @@ class GeoLocations(models.Model):
         verbose_name='Геолокация'
         verbose_name_plural='Геолокации'
 
-
+    def get_all_children(self):
+        """
+        This method will return all children and grandchildren of GeoLocations objects
+        :return:
+        """
+        p_ids=[]
+        p_ids.append(self.id)
+        p_list = self.children.all()
+        if len(p_list)>0:
+            for p in p_list:
+                p_ids.append(p.id)
+                #children = p.get_all_children()
+                childs = p.children.all()
+                if len(childs)>0:
+                    for child in childs:
+                    #p_list = p_list.union(children)
+                        p_ids.append(child.id)
+        return p_ids
 
 class GeoLocationType(models.Model):
     GeoLocationType=models.CharField(max_length=10)
@@ -42,3 +59,4 @@ class Freights(models.Model):
     class Meta:
         verbose_name = 'Грузоперевозка'
         verbose_name_plural = 'Грузоперевозки'
+        ordering = ['-id']

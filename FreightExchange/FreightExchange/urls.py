@@ -19,7 +19,9 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.freight),
+    #path("", views.autocomplete ,name='autocomplete'),
+
+    path("", views.freight,name='autocomplete'),
     path("addfreight", views.addfreight),
     path('captcha/', include('captcha.urls')),
 

@@ -28,5 +28,35 @@
     </tr>
     {% endfor %}
     </tbody>
+
+
+    </span>
+</div>
 </table>
+
+<nav aria-label="...">
+{% if freights.has_other_pages %}
+    <ul class="pagination">
+   {% if freights.has_previous %}
+     <li class="page-item"><a class="page-link" href="?page={{ freights.previous_page_number }}">«</a></li>
+   {% else %}
+     <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">«</a></li>
+   {% endif %}
+   {% for i in freights.paginator.page_range %}
+     {% if freights.number == i %}
+    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+     {% else %}
+    <li class="page-item"><a  class="page-link"href="?page={{ i }}">{{ i }}</a></li>
+     {% endif %}
+   {% endfor %}
+   {% if freights.has_next %}
+     <li><a class="page-link" href="?page={{ freights.next_page_number }}">»</a></li>
+   {% else %}
+     <li class="page-link disabled"><span>»</span></li>
+   {% endif %}
+    </ul>
+  {% endif %}
+</nav>
+
+
 {% endblock content %}
