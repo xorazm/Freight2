@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import AddFreight
 from django.core.exceptions import ObjectDoesNotExist
+from datetime import date
 
 from .models import GeoLocations,Freights
 
@@ -48,10 +49,13 @@ def addfreight(request):
             weight=request.POST.get("Weight")
             comment=request.POST.get("Comment")
             contact=request.POST.get("Contact")
-            message="Данные благополучно добавились"
+
             try:
                 fromLocation=GeoLocations.objects.get(GeoLocationName=fromloc)
                 toLocation=GeoLocations.objects.get(GeoLocationName=toloc)
+                fr=Freights(FromLoc=fromLocation,ToLoc=toLocation,Weight=weight,Comment=comment,SubmitedDate=date.today(),Contact=contact,Active=False)
+                fr.save()
+                message = "Данные благополучно добавились, после подтверждения администратором появится на сайте"
             except ObjectDoesNotExist:
                 message="Введенные геоданные нет в базе"
                 return render(request,"addfreight.html",{"addfr":addfr,"message": message})

@@ -7,6 +7,8 @@ class GeoLocations(models.Model):
     GeoLocationName=models.CharField(max_length=50,verbose_name='Название')
     GeoLocationParentId=models.ForeignKey('self', blank=True, null=True, related_name='children',on_delete=models.CASCADE,verbose_name='Родитель')
     GeoLocationTypeId=models.ForeignKey('GeoLocationType',on_delete=models.CASCADE, verbose_name='Тип геолокации')
+    FromGeoLocationWord=models.CharField(max_length=50,verbose_name='Из ...',default="")
+    ToGeoLocationWord=models.CharField(max_length=50,verbose_name='В ...',default="")
 
     def __str__(self):
         return self.GeoLocationName
@@ -15,7 +17,9 @@ class GeoLocations(models.Model):
         verbose_name='Геолокация'
         verbose_name_plural='Геолокации'
 
-
+class GeoLocationSynonyms(models.Model):
+    geoid = models.ForeignKey('GeoLocations',  on_delete=models.CASCADE)
+    synonym=models.CharField(max_length=20)
 
 class GeoLocationType(models.Model):
     GeoLocationType=models.CharField(max_length=10)

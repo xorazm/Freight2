@@ -22,8 +22,12 @@
         <td> {{freight.ToLoc.GeoLocationName}}</td>
         <td> {{freight.Weight}}</td>
         <td> {{freight.Comment}}</td>
-        <td> {{freight.Contact}} <br>
+        <td> {% if freight.Contact is not None %}
+            {{freight.Contact}} <br>
+            {% endif %}
+            {% if freight.TLLinkUser is not None %}
             {{freight.TLLinkUser}}
+            {% endif %}
         </td>
     </tr>
     {% endfor %}
