@@ -2,31 +2,25 @@
         <div class="container">
         <div class="row">
   <div class="col">
-    <input type="text" name="fromTxt" id="fromTxt"  class="form-control" placeholder="Откуда" aria-label="Откуда">
+    <input type="text" name="fromTxt"  value="{{ fromloc|default_if_none:'' }}"id="fromTxt"  class="form-control" placeholder="Откуда" aria-label="Откуда">
       <script>
         $(function () {
-            var availableTags = [
-                {% for geo1 in geoloc %}
-                    "{{geo1.GeoLocationName}}",
-                {% endfor %}
-                ];
+
             $("#fromTxt").autocomplete({
-                source: availableTags
+                source: '{% url "autocomplete" %}',
+                minLength:2
                 });
         });
     </script>
 
 
-    <input type="text" name="toTxt" id="toTxt" class="form-control" placeholder="Куда" aria-label="Куда">
+    <input type="text" name="toTxt" id="toTxt" value="{{ toloc|default_if_none:'' }}" class="form-control" placeholder="Куда" aria-label="Куда">
       <script>
         $(function () {
-            var availableTags = [
-                {%for geo in geoloc %}
-                    "{{geo.GeoLocationName}}",
-                {% endfor %}
-                ];
+
             $("#toTxt").autocomplete({
-                source: availableTags
+                source: '{% url "autocomplete" %}',
+                minLength:2
                 });
         });
     </script>
